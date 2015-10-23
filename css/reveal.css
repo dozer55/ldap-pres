@@ -1351,4 +1351,9 @@ img.noborder {
   border: none !important;
   padding: 0px !important;
   margin: 0px !important;
+  box-shadow: none !important;
+}
+
+.shadow {
+  text-shadow: 5px 5px 5px #000000;
 }

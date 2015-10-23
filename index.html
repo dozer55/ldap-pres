@@ -86,7 +86,7 @@
 					</section>
 				</section>
 				
-				<section>
+				<section data-background="#4d7e65" data-background-transition="zoom">
 					<section>
 						<h2>User Authentication: The Old Way</h2>
 						<img src="images/moldy-bread.png">
@@ -122,7 +122,38 @@ if(isset($_SESSION['username'])){
 				
 				
 				<section data-background="images/journey.gif">
-					<h2><span>Let the journey begin!</span></h2>
+					<h2><span class="shadow">Drupal and LDAP</span></h2>
+					<h3><span class="shadow">Let the Journey Begin!</span></h3>
+				</section>
+				
+				<section>
+					<section>
+						<h2>Getting Geared Up</h2>
+					<img src="images/inventory.jpg">
+					</section>
+					<section>
+						<h2>Prerequisites</h2>
+						
+						<li>LDAP Server (OpenLDAP or ActiveDirectory)</li>
+						<li>PHP ldap extension enabled</li>
+						<li>mcrypt extension loaded and enabled (for encryption of stored passwords)</li>
+						<li>Open SSL or other ssl extension loaded</li>
+						<li>If using LDAPS, make sure certificate is installed on server</li>
+						<li><a href='https://www.drupal.org/node/1023900'>Prerequisite List on Drupal.org</a></li>
+					</section>
+					
+					<section>
+						<h2>Install PHP ldap extension (Ubuntu Example)</h2>
+						<code class="hljs" data-trim contenteditable>
+							<pre>
+$ sudo apt-get install php5-ldap
+
+Reboot apache server
+
+$ sudo apache2 restart
+							</pre>
+						</code>
+					</section>
 				</section>
 				
 				<!-- Example of nested vertical slides -->
