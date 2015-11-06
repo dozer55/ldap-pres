@@ -60,9 +60,20 @@
 					</section>
 					<section>
 						<h2><span class="shadow">LDAP Defined</span></h2>
+						<aside class="notes">Keep unauthorized users out, and let authorized users in.</aside>
+						<img src="images/cat-guard.gif">
+					</section>
+
+					<section>
+						<h2> <span class="shadow">LDAP Defined</span></h2>
+						<aside class="notes">Or at the very least slow them down.</aside>
+						<img style="width: 500px;" src="https://media.giphy.com/media/Bsqfe2L7DpQzK/giphy.gif">
+					</section>
+					<section>
+						<h2><span class="shadow">LDAP Defined</span></h2>
 						<p>
 						<p><img src="images/you-shall-not-pass.gif"></p>
-						A common usage of LDAP is to provide a single sign on where one password for a user is shared between many services, such as applying a company login code to web pages (so that staff log in only once to company computers, and then are automatically logged into the company intranet).
+						A common usage of LDAP is to provide a single sign on where one password for a user is shared between many services...
 						</p>
 						<p class='texthighlight'>Source: <a href='https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol'>Wikipedia</a></p>
 					</section>
@@ -77,7 +88,7 @@
 						<li>Student Portal Logins</li>
 						<li>Many more !!!</li>
 						<p></p>
-						<h3><span class="texthighlight">SINGLE SIGN ON IS KEY</span></h3>
+						<h3><span class="texthighlight">Having a single login is very important for Chattanooga State.</span></h3>
 					</section>
 					
 					<section>
@@ -94,6 +105,9 @@
 						<h2>User Authentication: The Old Way</h2>
 						<img src="images/moldy-bread.png">
 						<li>Create database of users, write multiple scripts to manage everything....Bleh!</li>
+						<aside class="notes">
+							Lots of time to manage lost passwords, password resets, security issues, etc.
+						</aside>
 					</section>
 					
 					<section>
@@ -130,6 +144,9 @@ if(isset($_SESSION['username'])){
 				</section>
 				
 				<section>
+					<section data-background="images/steve-carell.gif">
+						<h2><span class="shadow">Setting up LDAP can be a pain!</span></h2>
+					</section>
 					<section>
 						<h2>Getting Geared Up</h2>
 					<img src="images/inventory.jpg">
@@ -139,48 +156,16 @@ if(isset($_SESSION['username'])){
 						
 						<li>LDAP Server (OpenLDAP or ActiveDirectory)</li>
 						<li>PHP ldap extension enabled</li>
-						<li>mcrypt extension loaded and enabled (for encryption of stored passwords)</li>
-						<li>Open SSL or other ssl extension loaded</li>
-						<li>If using LDAPS, make sure certificate is installed on server</li>
+						<li>SSL Package of Your Choosing</li>
+						<li>If using LDAPS (highly recommended for secure connections), make sure certificate is installed on server</li>
 						<li><a href='https://www.drupal.org/node/1023900'>Prerequisite List on Drupal.org</a></li>
-					</section>
-					
-					<section>
-						<h2>Install PHP ldap extension</h2>
-						<h2>(Ubuntu Example)</h2>
-						<code class="hljs" data-trim contenteditable>
-							<pre>
-$ sudo apt-get install php5-ldap
-
-Reboot apache server
-
-$ sudo apache2 restart
-							</pre>
-						</code>
-					</section>
-
-<section>
-						<h2>Install PHP mcrypt extension</h2>
-						<h2>(Ubuntu Example)</h2>
-						<code class="hljs" data-trim contenteditable>
-							<pre>
-$ sudo apt-get install php5-mcrypt
-
-Reboot apache server
-
-$ sudo apache2 restart
-							</pre>
-						</code>
+						<li>and...</li>
 					</section>
 
 					<section>
-						<h2>Install OpenSSL</h2>
-						<h2>(Ubuntu Example)</h2>
-						<code class="hljs" data-trim contenteditable>
-							<pre>
-$ sudo apt-get install openssl
-							</pre>
-						</code>
+						<img style='width: 700px;' class="noborder" src="images/ploppers.gif">
+						<h3><span class="shadow">...a good relationship with your IT Department</span></h3>
+						<aside class="notes">I will cover how I was able to get this up and running on our systems.</aside>
 					</section>
 				
 					<section>
@@ -197,6 +182,7 @@ $ sudo apt-get install openssl
 				</section>
 
 				<section>
+					<section>
 					<h2>Drupal and LDAP Module</h2>
 					<h3>Installation</h3>
 					<p><a href="https://www.drupal.org/project/ldap">Download LDAP Module from Drupal.org</a></p>
@@ -208,6 +194,90 @@ $ sudo apt-get install openssl
 $ drush en ldap -y
 							</pre>
 						</code>
+						</section>
+					<section>
+						<h2>Live Demonstration</h2>
+						<a href="http://ldaptest" target="_blank">LDAP Test Site</a>
+						<aside class="notes">
+<pre>
+1. Install LDAP Module
+2. Enable - LDAP Servers, LDAP User Module, LDAP Authentication, LDAP Authorization, LDAP Authorization Drupal Roles, LDAP Help
+3. Click Configure->People->LDAP Configuration
+
+4A - Settings
+=============
+Click "Enabled Detailed LDAP Watchdog logging"
+
+4B - Server
+===========
+Connection Settings
+-------------------
+LDAP Server: ldaps://dcdmz.cstcc.lan
+LDAP Port: 636 (recommend 636 for security--for purposes of talk did not set up certs)
+
+Binding Method
+--------------
+[x] Service Account Bind
+DN for non-anonymous search: CN= ,OU=Generic Accounts,OU=User,DC=cstcc,DC=lan
+Password:
+
+LDAP User to Drupal User Relationship
+-------------------------------------
+Base DNs for LDAP users, group, and other entries: ou=User,dc=cstcc,dc=lan
+AuthName attribute: samaccountname
+AccountName: blank (defaults)
+Email attribute: mail
+Email template: blank
+Thumbnail attribute: blank
+Persistent and Unique User ID Attribute: blank
+Expression for user DN. Required when "Bind with Users Credentials" method selected: blank
+
+4C - User
+=========
+Manual Drupal Account Creation and Updates
+------------------------------------------
+[x] Show option on user create form to determine how account conflict is resolved
+
+Basic Provisioning to Drupal Account Settings
+---------------------------------------------
+[x] dcdmz.cstcc.lan
+
+Drupal Account Provisioning Events: Non selected (In this test case, I will control which accounts get created but use AD for
+
+authentication)
+[x] Disable the password fields at /admin/create/people since the password is going to be randomly generated anyway.
+
+Existing Drupal User Account Conflict
+-------------------------------------
+[x] Associate Drupal account with the LDAP entry
+
+Application of Drupal Account settings to LDAP Authenticated Users
+------------------------------------------------------------------
+[x] Account creation settings at admin/config/people/accounts/settings do not affect "LDAP Associated" Drupal accounts.
+
+Action to perform on Drupal account that no longer have a corresponding LDAP entry
+[x] Do not check for orphaned Drupal accounts (because I am controlling accounts on site)
+
+Provisioning from LDAP to Drupal Mappings: None (because synching is off)
+
+Basic Provisioning to LDAP Settings
+[x] None
+
+5C - Authentication
+===================
+Logon Options
+-------------
+Allowable Authentications - [x] Mixed mode
+Authentication LDAP Server Configurations - [x] dcdmz.cstcc.lan
+
+User Login Interface
+--------------------
+Go over options
+
+Authorizations - cn=csstaff,ou=groups,dc=cstcc,dc=lan|content-editor
+</pre>
+						</aside>
+					</section>
 				</section>
 				
 
