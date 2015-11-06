@@ -189,7 +189,7 @@ $ sudo apt-get install openssl
 					</section>
 
 					<section>
-						<img style='width: 75%;' src="images/quest-thing.gif">
+						<img style='width: 60%;' src="images/quest-thing.gif">
 					</section>
 				</section>
 
@@ -202,13 +202,13 @@ $ sudo apt-get install openssl
 					<p><a href="https://www.drupal.org/project/ldap">Download LDAP Module from Drupal.org</a></p>
 					<p>Copy to sites/all/modules and extract</p>
 					<p>- or -</p>
+					<p><span class="highlighttext">Use Drush!</span> <img style='width: 50px' class='noborder' src='images/easy-button.png'></p>
 					<code class="hljs" data-trim contenteditable>
 							<pre>
 $ drush en ldap -y
 							</pre>
 						</code>
 				</section>
-
 				
 
 			</div>
