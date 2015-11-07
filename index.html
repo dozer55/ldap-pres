@@ -79,7 +79,7 @@
 					</section>
 				
 					<section>
-						<h2>LDAP at Chattanooga State</h2>
+						<h2><span class="shadow">LDAP at Chattanooga State</span></h2>
 						<img class="noborder" src="images/logo-active-directory-720.png">
 						<p></p>
 						<li>Faculty/Staff PC Logins</li>
@@ -88,11 +88,12 @@
 						<li>Student Portal Logins</li>
 						<li>Many more !!!</li>
 						<p></p>
-						<h3><span class="texthighlight">Having a single login is very important for Chattanooga State.</span></h3>
+						<h3><span class="texthighlight">Single Login Across Services</span></h3>
+						<aside class="notes">LDAP is our flavor of LDAP. There are others (OpenLDAP, etc.)</aside>
 					</section>
 					
 					<section>
-						<h2>Benefits of Using LDAP Auth For Web Applications</h2>
+						<h2><span class="shadow">LDAP at Chattanooga State Benefits of Using LDAP Auth For Web Applications</span></h2>
 						<li>Single Sign On</li>
 						<li>Easy Administration of Users, Roles, etc. </li>
 						<p>(We'll talk about Roles later on)</p>
@@ -102,7 +103,7 @@
 				
 				<section>
 					<section>
-						<h2>User Authentication: The Old Way</h2>
+						<h2><span class="shadow">User Authentication: The Old Way</span></h2>
 						<img src="images/moldy-bread.png">
 						<li>Create database of users, write multiple scripts to manage everything....Bleh!</li>
 						<aside class="notes">
@@ -111,7 +112,7 @@
 					</section>
 					
 					<section>
-						<h2>User Authentication: The Newer, Easier Way</h2>
+						<h2><span class="shadow">User Authentication: The Newer, Easier Way</span></h2>
 						<pre><code class="hljs" data-trim contenteditable>
 if(isset($_SESSION['username'])){
 	$ldap = ldap_connect("dcdmz.cstcc.lan,ou=users,ou=staff,dc=cstcc,dc=lan");
@@ -129,7 +130,7 @@ if(isset($_SESSION['username'])){
 					</section>
 					
 					<section>
-						<h2>User Authentication: The Drupal Way</h2>
+						<h2><span class="shadow">User Authentication: The Drupal Way</span></h2>
 						<img class="noborder" src="images/bread.png"><img class="noborder" src="images/drupal.png">
 						<p>It's Baked In! Well...sort of...Er...<span class="texthighlight">Ready to Bake!</span></p>
 					</section>
@@ -148,18 +149,18 @@ if(isset($_SESSION['username'])){
 						<h2><span class="shadow">Setting up LDAP can be a pain!</span></h2>
 					</section>
 					<section>
-						<h2>Getting Geared Up</h2>
+						<h2><span class="shadow">Getting Geared Up</span></h2>
 					<img src="images/inventory.jpg">
 					</section>
 					<section>
-						<h2>Prerequisites</h2>
+						<h2><span class="shadow">Prerequisites</span></h2>
 						
-						<li>LDAP Server (OpenLDAP or ActiveDirectory)</li>
-						<li>PHP ldap extension enabled</li>
-						<li>SSL Package of Your Choosing</li>
-						<li>If using LDAPS (highly recommended for secure connections), make sure certificate is installed on server</li>
-						<li><a href='https://www.drupal.org/node/1023900'>Prerequisite List on Drupal.org</a></li>
-						<li>and...</li>
+						<li class="fragment">LDAP Server (Lots of flavors to choose from - Microsoft Active Directory is fairly common)</li>
+						<li class="fragment">PHP ldap extension enabled</li>
+						<li class="fragment">SSL Package of Your Choosing</li>
+						<li class="fragment">If using LDAPS (highly recommended for secure connections), make sure certificate is installed on server</li>
+						<li class="fragment"><a href='https://www.drupal.org/node/1023900'>Prerequisite List on Drupal.org</a></li>
+						<li class="fragment">and...</li>
 					</section>
 
 					<section>
@@ -167,15 +168,7 @@ if(isset($_SESSION['username'])){
 						<h3><span class="shadow">...a good relationship with your IT Department</span></h3>
 						<aside class="notes">I will cover how I was able to get this up and running on our systems.</aside>
 					</section>
-				
-					<section>
-						<h2>Using LDAPS? (Strongly Suggested)</h2>
-						<p>Make sure certificate installed on server</p>
-					</section>
 
-					<section>
-						<img style='width: 60%;' src="images/quest-thing.gif">
-					</section>
 				</section>
 
 				<section data-background="images/going-on-adventure.gif">
@@ -183,7 +176,7 @@ if(isset($_SESSION['username'])){
 
 				<section>
 					<section>
-					<h2>Drupal and LDAP Module</h2>
+					<h2><span class="shadow">Drupal and LDAP Module</span></h2>
 					<h3>Installation</h3>
 					<p><a href="https://www.drupal.org/project/ldap">Download LDAP Module from Drupal.org</a></p>
 					<p>Copy to sites/all/modules and extract</p>
@@ -196,7 +189,7 @@ $ drush en ldap -y
 						</code>
 						</section>
 					<section>
-						<h2>Live Demonstration</h2>
+						<h2><span class="shadow">Live Demonstration</span></h2>
 						<a href="http://ldaptest" target="_blank">LDAP Test Site</a>
 						<aside class="notes">
 <pre>
@@ -279,7 +272,14 @@ Authorizations - cn=csstaff,ou=groups,dc=cstcc,dc=lan|content-editor
 						</aside>
 					</section>
 				</section>
-				
+
+				<section>
+					<h2>Questions, comments, discussion</h2>
+					<p><i class="fa fa-envelope-o fa-2x"></i><span class="texthighlight"> E-mail: wacrum@gmail.com</span></p>
+
+					<p><i class="fa fa-github fa-2x"></i> <span class="texthighlight">Presentation on GitHub </span><a href='https://goo.gl/ukmOG1' target="_blank">https://goo.gl/ukmOG1</a></p>
+
+				</section>
 
 			</div>
 
